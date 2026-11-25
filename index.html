@@ -97,7 +97,7 @@ h1,h2,h3,p{margin:0}
 .banner li{margin:1px 0}
 .banner b{font-weight:800;color:#D9482F}
 .banner.ok b{color:#121211}
-.banner .sub{margin-top:5px;font-size:11.5px;color:#a15267}
+.banner .sub{margin-top:5px;font-size:11.5px;color:#6E6440}
 .banner.ok .sub,.banner.neutral .sub{color:#71717a}
 
 /* ---------- 범례 ---------- */
@@ -176,8 +176,8 @@ h1,h2,h3,p{margin:0}
 .brief{display:flex;align-items:center;gap:11px;margin:13px 0 1px}
 .brief-char{flex:0 0 50px;width:50px;height:50px;display:block}
 .brief-txt{min-width:0;flex:1}
-.brief p{margin:0;font-size:12.5px;line-height:1.5;letter-spacing:-.3px}
-.brief .b1{font-weight:800;color:#121211}
+.brief p{margin:0;font-size:11.5px;line-height:1.5;letter-spacing:-.3px}
+.brief .b1{font-weight:800;color:#121211;font-size:12.5px}
 .brief .b2{margin-top:2px;font-weight:600;color:#9E5A6B;font-size:11.5px}
 @media (max-width:359px){.brief p{font-size:12.5px}.brief .b2{font-size:11.5px}}
 
@@ -1224,19 +1224,19 @@ function moodChar(ci){
   var bg = {pout:'#FFE4E8', belly:'#FFE4E8', back:'#FFE4E8', sleepy:'#E4F1FA', dizzy:'#EFEAFB', smile:'#F1F9EB'}[pose];
   var s = '<svg class="brief-char" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">'
     + '<circle cx="24" cy="24" r="23" fill="' + bg + '"/>'
-    + '<path d="M24 10.5c8.6 0 12.5 6.3 12.5 14 0 7.4-4.6 12.5-12.5 12.5S11.5 31.9 11.5 24.5c0-7.7 3.9-14 12.5-14z" fill="#FFFFFF" stroke="#1C1C1E" stroke-width="1.6" stroke-linejoin="round"/>';
+    + '<path d="M11.9 24.6c0-7.9 4.7-13.4 12.1-13.4s12.1 5.5 12.1 13.4v10.2c0 1.2-.8 1.8-1.7 1.2l-2.5-1.8c-.8-.6-1.7-.6-2.5 0l-2.4 1.8c-.8.6-1.7.6-2.5 0l-2.4-1.8c-.8-.6-1.7-.6-2.5 0l-2.5 1.8c-.9.6-1.7 0-1.7-1.2z" fill="#FFFFFF" stroke="#1C1C1E" stroke-width="1.6" stroke-linejoin="round"/>';
 
-  var eyesOpen = '<circle cx="20" cy="22" r="1.6" fill="#1C1C1E"/><circle cx="28" cy="22" r="1.6" fill="#1C1C1E"/>';
-  var eyesClosed = '<path d="M18.2 22.2c1.1 1 2.5 1 3.6 0M26.2 22.2c1.1 1 2.5 1 3.6 0" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>';
-  var blush = '<circle cx="16.4" cy="25.4" r="2.1" fill="#FFC2CC"/><circle cx="31.6" cy="25.4" r="2.1" fill="#FFC2CC"/>';
+  var eyesOpen = '<circle cx="20.2" cy="22.4" r="1.7" fill="#1C1C1E"/><circle cx="27.8" cy="22.4" r="1.7" fill="#1C1C1E"/>';
+  var eyesClosed = '<path d="M18.4 22.6c1.1 1 2.5 1 3.6 0M26 22.6c1.1 1 2.5 1 3.6 0" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>';
+  var blush = '<circle cx="16.6" cy="26" r="2" fill="#FFC2CC"/><circle cx="31.4" cy="26" r="2" fill="#FFC2CC"/>';
 
   if (pose === 'smile') {
     s += eyesOpen + blush
-      + '<path d="M21.2 26.6c1.9 1.9 3.7 1.9 5.6 0" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>';
+      + '<path d="M21.3 26.8c1.8 1.9 3.6 1.9 5.4 0" stroke="#1C1C1E" stroke-width="1.7" stroke-linecap="round"/>';
   } else if (pose === 'pout') {
     s += eyesClosed + blush
-      + '<path d="M22.2 27.8c1.2-1 2.4-1 3.6 0" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>'
-      + '<path d="M34.6 13.6c1.2 1.7 1.8 2.6 1.8 3.3a1.8 1.8 0 1 1-3.6 0c0-.7.6-1.6 1.8-3.3z" fill="#BCE7F0" stroke="#1C1C1E" stroke-width="1"/>';
+      + '<path d="M22.1 28.2c1.2-1 2.6-1 3.8 0" stroke="#1C1C1E" stroke-width="1.7" stroke-linecap="round"/>'
+      + '<path d="M34.9 14.4c1.2 1.7 1.8 2.6 1.8 3.4a1.9 1.9 0 1 1-3.8 0c0-.8.6-1.7 1.8-3.4z" fill="#BCE7F0" stroke="#1C1C1E" stroke-width="1"/>';
   } else if (pose === 'sleepy') {
     s += '<path d="M18.4 22.4c1.1.7 2.3.7 3.4 0M26.2 22.4c1.1.7 2.3.7 3.4 0" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>'
       + '<circle cx="24" cy="28" r="1.5" fill="#1C1C1E"/>'
@@ -1253,8 +1253,8 @@ function moodChar(ci){
       + '<path d="M37.4 25.2c1.2.5 1.9 1.5 2.1 2.8M35.2 22.4c1.6.5 2.6 1.7 3 3.4" stroke="#1C1C1E" stroke-width="1.2" stroke-linecap="round" opacity=".75"/>';
   } else if (pose === 'belly') {
     s += eyesClosed + blush
-      + '<path d="M16.6 29.2c2.3 2.2 4.8 3.2 7.4 3.2s5.1-1 7.4-3.2" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>'
-      + '<path d="M16.6 29.2c-.6-1.5-.2-2.9 1.2-3.6M31.4 29.2c.6-1.5.2-2.9-1.2-3.6" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>';
+      + '<path d="M16.8 30.4c2.3 2 4.8 3 7.2 3s4.9-1 7.2-3" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>'
+      + '<path d="M16.8 30.4c-.7-1.6-.4-3 1-3.9M31.2 30.4c.7-1.6.4-3-1-3.9" stroke="#1C1C1E" stroke-width="1.6" stroke-linecap="round"/>';
   }
   return s + '</svg>';
 }
