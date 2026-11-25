@@ -1134,8 +1134,8 @@ function cycleSvg(ci){
   var groups = [];
   if (lsN !== null) {
     state.ranges.forEach(function(r){
-      var a = Math.round((d2n(r.start) - lsN) / MS) + 1;
-      var b = Math.round((d2n(r.end) - lsN) / MS) + 1;
+      var a = Math.round(d2n(r.start) - lsN) + 1;
+      var b = Math.round(d2n(r.end) - lsN) + 1;
       if (b < 1 || a > total) return;
       groups.push({ type: r.type, planned: !!r.planned, a: a, b: b });
     });
