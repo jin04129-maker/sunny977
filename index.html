@@ -128,11 +128,12 @@ h1,h2,h3,p{margin:0}
   position:relative;display:flex;flex-direction:column;align-items:center;
   min-height:44px;padding:4px 0 10px;border-radius:9px;
 }
-/* 스트레스는 오브젝트 없이 셀 바탕 면으로만 */
-.cell.st1{background:linear-gradient(168deg,#f4f2ec 0%,#f0eee7 100%)}
-.cell.st2{background:linear-gradient(168deg,#fce7e9 0%,#fdf1f1 62%,#fdf5f4 100%)}
-.cell.sel{box-shadow:inset 0 0 0 1.5px #a1a1aa}
-.dwrap{position:relative;display:flex;align-items:center;justify-content:center;height:19px}
+/* 스트레스는 오브젝트 없이 셀 바탕 면으로만 (숫자+기록 글자 높이의 작은 타일) */
+.face{position:absolute;left:0;right:0;top:0;height:34px;border-radius:9px;z-index:0}
+.face.st1{background:linear-gradient(168deg,#f4f2ec 0%,#f0eee7 100%)}
+.face.st2{background:linear-gradient(168deg,#fce7e9 0%,#fdf1f1 62%,#fdf5f4 100%)}
+.cell.sel{outline:1.5px solid #a1a1aa;outline-offset:-1.5px}
+.dwrap{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:19px}
 .dnum{
   min-width:21px;height:19px;line-height:19px;text-align:center;
   font-size:12.5px;font-weight:700;color:#18181b;
@@ -140,7 +141,7 @@ h1,h2,h3,p{margin:0}
 .cell.out .dnum{color:#d9d6d0;font-weight:600}
 .cell.today .dnum{background:#111111;color:#ffffff;border-radius:6px;box-shadow:0 0 0 2px #e8e6e1,0 2px 6px rgba(24,24,27,.18)}
 /* 기록 표식: 글자만. 완료는 옅은 회색, 못 챙긴 것만 붉게 */
-.mks{display:flex;align-items:center;justify-content:center;gap:3px;height:8px;margin-top:2px;font-size:7px;font-weight:700;letter-spacing:-0.2px}
+.mks{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;gap:3px;height:8px;margin-top:2px;font-size:7px;font-weight:700;letter-spacing:-0.2px}
 .mks i{font-style:normal;color:#c2beb7}
 .mks i.bad{color:#dc2626;font-weight:800}
 .cell.out .mks i{color:#e2dfda}
@@ -382,7 +383,7 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
         <p class="hello">오늘도 천천히</p>
         <h1>내 컨디션 캘린더</h1>
       </div>
-      <button class="icon-btn" id="btnSettings" aria-label="설정"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.3M12 18.9v2.3M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.8 12h2.3M18.9 12h2.3M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg></button>
+      <button class="icon-btn" id="btnSettings" aria-label="설정"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.7"/><circle cx="12" cy="12" r="1.7"/><circle cx="19" cy="12" r="1.7"/></svg></button>
     </div>
     <div class="todayline" id="todayLine">오늘</div>
   </header>
@@ -970,7 +971,7 @@ function renderCalendar(){
 
   var low = state.settings.sleepLow, high = state.settings.sleepHigh;
   var tISO = todayISO();
-  var BAR = 8, GAP = 3, NUMH = 36;
+  var BAR = 8, GAP = 3, NUMH = 38;
   var html = '';
 
   for (var w = 0; w < weeks; w++) {
@@ -1000,6 +1001,7 @@ function renderCalendar(){
       if (stLv) cls += ' st' + stLv;
 
       html += '<div class="' + cls + '" data-date="' + iso + '" role="button" tabindex="0" aria-label="' + fmtDate(iso, true) + '">';
+      if (stLv) html += '<i class="face st' + stLv + '" aria-hidden="true"></i>';
       html += '<div class="dwrap"><span class="dnum">' + d.getUTCDate() + '</span></div>';
 
       var marks = '';
@@ -1009,7 +1011,7 @@ function renderCalendar(){
         if (typeof rec.supp === 'boolean') marks += '<i' + (rec.supp ? '' : ' class="bad"') + '>영</i>';
       }
       html += '<div class="mks">' + marks + '</div>';
-      if (laneBlock) html += '<div style="height:' + (laneBlock + GAP + 5) + 'px"></div>';
+      if (laneBlock) html += '<div style="height:' + (laneBlock + GAP + 6) + 'px"></div>';
       html += '</div>';
     }
 
