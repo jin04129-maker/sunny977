@@ -181,10 +181,10 @@ h1,h2,h3,p{margin:0}
 .lgface.st2{background:linear-gradient(150deg,#ffb3c8 0%,#ffe1e8 100%);box-shadow:inset 0 0 0 1px #f7b6c8}
 
 /* ---------- 지금 너는 · 한두 줄 요약 ---------- */
-.brief{margin:-6px 0 18px;padding-left:12px;border-left:2px solid rgba(255,94,132,.45)}
-.brief p{margin:0;font-size:13.5px;line-height:1.5;letter-spacing:-.35px;letter-spacing:-.3px}
+.brief{margin:11px 0 1px;padding-left:10px;border-left:2px solid rgba(255,94,132,.4)}
+.brief p{margin:0;font-size:12.5px;line-height:1.5;letter-spacing:-.3px}
 .brief .b1{font-weight:800;color:#18181b}
-.brief .b2{margin-top:3px;font-weight:600;color:#a15267;font-size:12.5px}
+.brief .b2{margin-top:2px;font-weight:600;color:#a15267;font-size:11.5px}
 @media (max-width:359px){.brief p{font-size:12.5px}.brief .b2{font-size:11.5px}}
 
 /* ---------- 요약 ---------- */
@@ -198,38 +198,31 @@ h1,h2,h3,p{margin:0}
 .kicker{display:inline-block;font-size:9px;font-weight:800;color:#b6b6bd;letter-spacing:1.6px}
 .summary h2{font-size:23px;font-weight:800;letter-spacing:-1.1px;margin:6px 0 16px;color:#18181b}
 /* 미니 인포그래픽 */
-.sum-sec{margin-top:16px;padding-top:14px;border-top:1px solid rgba(24,24,27,.07)}
-.sum-sec.first{margin-top:2px;padding-top:0;border-top:0}
-.sum-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:8px}
-.sum-k{font-size:9px;font-weight:800;color:#a6a6ae;letter-spacing:1.1px;white-space:nowrap}
-.sum-v{font-size:10px;font-weight:700;color:#71717a;letter-spacing:-0.1px;white-space:nowrap}
+.sum-sec{margin-top:10px;padding:13px 14px 14px;border-radius:16px;background:#ffffff;border:1px solid rgba(24,24,27,.06);box-shadow:0 1px 2px rgba(24,24,27,.03)}
+.sum-sec.first{margin-top:2px;border-color:rgba(255,94,132,.18);background:linear-gradient(165deg,#fff8fa 0%,#fffefe 74%)}
+.sum-sec.warm{border-color:rgba(251,191,36,.26);background:linear-gradient(165deg,#fffaef 0%,#fffdf7 74%)}
+.sum-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px}
+.sum-k{font-size:12px;font-weight:700;color:#3f3f46;letter-spacing:-0.3px;white-space:nowrap}
+.sum-v{font-size:10.5px;font-weight:700;color:#71717a;letter-spacing:-0.1px;white-space:nowrap}
 .sum-v b{font-size:13px;font-weight:800;color:#18181b;letter-spacing:-0.5px;margin-left:1px}
 .sum-v b.rose{color:#e11d48}
 .cycsvg{display:block;width:100%;height:auto;margin:2px 0 0}
-.panel{position:relative;border-radius:18px;padding:11px 12px 9px;border:1px solid rgba(24,24,27,.05)}
-.panel.warm{
-  background:
-    radial-gradient(120% 130% at 100% 0%, rgba(253,224,71,.9) 0%, rgba(251,191,36,.34) 40%, rgba(255,247,237,0) 76%),
-    linear-gradient(160deg,#fffaf0 0%,#fff5e6 100%);
-  border-color:rgba(251,191,36,.22);
-}
-.panel .sum-head{margin-bottom:5px}
 .chart{position:relative;height:48px;margin:0 1px}
 .chart .base{position:absolute;left:0;right:0;height:0;border-top:1px dashed rgba(24,24,27,.22)}
 .chart .sbars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:6px}
 .chart .sbar{flex:1;display:flex;align-items:flex-end;justify-content:center;height:100%}
 .chart .sbar i{display:block;width:100%;max-width:12px;border-radius:3px 3px 1px 1px;background:#18181b}
-.chart .sbar i.short{background:#ff5e84}
+.chart .sbar i.short{background:linear-gradient(180deg,#fbbf24 0%,#f59e0b 100%)}
 .chart .sbar i.none{background:rgba(24,24,27,.10)}
 .ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.gcell{padding:9px 9px 10px;border-radius:12px;background:#fafafb;border:1px solid rgba(24,24,27,.05);overflow:hidden}
+.gcell{padding:9px 9px 10px;border-radius:12px;background:#f7f7f8;border:1px solid rgba(24,24,27,.045);overflow:hidden}
 .gname{display:block;font-size:10.5px;font-weight:800;color:#8a8a92;letter-spacing:-0.2px}
 .gst{display:block;margin-top:3px;font-size:11.5px;font-weight:800;color:#a1a1aa;letter-spacing:-0.3px;white-space:nowrap}
 .gst.mid{color:#18181b}
 .gst.hot{color:#e11d48}
 .gtrack{display:block;margin-top:7px;height:5px;border-radius:3px;background:#ececef;overflow:hidden}
 .gfill{display:block;height:5px;border-radius:3px;background:#18181b}
-.gfill.hot{background:linear-gradient(90deg,#ff7aa2 0%,#ff5e84 100%)}
+.gfill.hot{background:#e11d48}
 .gok{margin:2px 0 0;font-size:11px;font-weight:800;color:#52525b;letter-spacing:-0.2px}
 .strip{display:flex;gap:5px;margin:0 0 5px}
 .strip i{flex:1;height:13px;border-radius:3px;background:#ececef}
@@ -1239,19 +1232,19 @@ function renderSummary(){
   var ddayTxt = (ci.dday === null || typeof ci.dday !== 'number') ? '-'
     : (ci.dday > 0 ? 'D-' + ci.dday : (ci.dday === 0 ? 'D-DAY' : 'D+' + (-ci.dday)));
 
-  var html = '<span class="kicker">너 이렇다</span><h2>지금 너는</h2>' + todayBrief(ci, st);
+  var html = '<span class="kicker">너 이렇다</span><h2>지금 너는</h2>';
 
-  /* 1. 주기 타임라인 */
+  /* 1. 주기 타임라인 + 한두 줄 요약 */
   html += '<div class="sum-sec first">'
-    + '<div class="sum-head"><span class="sum-k">주기 ' + (ci.cycleDay ? ci.cycleDay + '일차' : '-') + '</span>'
+    + '<div class="sum-head"><span class="sum-k">주기 · ' + (ci.cycleDay ? ci.cycleDay + '일차' : '-') + '</span>'
     + '<span class="sum-v">다음 생리 <b class="rose">' + ddayTxt + '</b></span></div>'
-    + cycleSvg(ci) + '</div>';
+    + cycleSvg(ci) + todayBrief(ci, st) + '</div>';
 
   /* 2. 최근 7일 수면 */
-  html += '<div class="sum-sec"><div class="panel warm">'
-    + '<div class="sum-head"><span class="sum-k">수면 · 기준 ' + low + 'h</span>'
+  html += '<div class="sum-sec warm">'
+    + '<div class="sum-head"><span class="sum-k">수면 · 7일</span>'
     + '<span class="sum-v">평균 <b>' + (st.avg === null ? '-' : st.avg + 'h') + '</b></span></div>'
-    + sleepChart(low) + '</div></div>';
+    + sleepChart(low) + '</div>';
 
   /* 3. 연속 누락 게이지 */
   var sS = sleepStreak(), sM = medStreak(), sP = suppStreak();
@@ -1269,7 +1262,7 @@ function renderSummary(){
   html += '</div>';
 
   /* 4. 최근 7일 스트레스 */
-  html += '<div class="sum-sec"><div class="sum-head"><span class="sum-k">스트레스</span>'
+  html += '<div class="sum-sec"><div class="sum-head"><span class="sum-k">스트레스 · 7일</span>'
     + '<span class="sum-v"><b' + (st.stressDays > 0 ? ' class="rose"' : '') + '>' + st.stressDays + '일</b>'
     + (st.stressHigh > 0 ? ' · 심함 ' + st.stressHigh + '일' : '') + '</span></div>'
     + stressStrip() + '</div>';
