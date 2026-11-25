@@ -126,7 +126,7 @@ h1,h2,h3,p{margin:0}
 .week{position:relative;display:grid;grid-template-columns:repeat(7,1fr)}
 .cell{
   position:relative;display:flex;flex-direction:column;align-items:center;
-  min-height:44px;padding:4px 0 5px;border-radius:9px;
+  min-height:44px;padding:4px 0 10px;border-radius:9px;
 }
 /* 스트레스는 오브젝트 없이 셀 바탕 면으로만 */
 .cell.st1{background:linear-gradient(168deg,#f4f2ec 0%,#f0eee7 100%)}
@@ -140,8 +140,8 @@ h1,h2,h3,p{margin:0}
 .cell.out .dnum{color:#d9d6d0;font-weight:600}
 .cell.today .dnum{background:#111111;color:#ffffff;border-radius:6px;box-shadow:0 0 0 2px #e8e6e1,0 2px 6px rgba(24,24,27,.18)}
 /* 기록 표식: 글자만. 완료는 옅은 회색, 못 챙긴 것만 붉게 */
-.mks{display:flex;align-items:center;justify-content:center;gap:2.5px;height:8px;margin-top:2px;font-size:6.5px;font-weight:700;letter-spacing:-0.2px}
-.mks i{font-style:normal;color:#c9c6c0}
+.mks{display:flex;align-items:center;justify-content:center;gap:3px;height:8px;margin-top:2px;font-size:7px;font-weight:700;letter-spacing:-0.2px}
+.mks i{font-style:normal;color:#c2beb7}
 .mks i.bad{color:#dc2626;font-weight:800}
 .cell.out .mks i{color:#e2dfda}
 .cell.out .mks i.bad{color:#f0b3b8}
@@ -415,7 +415,7 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
         <span class="lg"><b class="lbad">수약영</b>못 챙김</span>
         <span class="lg"><i class="lgface st1"></i><i class="lgface st2"></i>스트레스</span>
       </div>
-      <p class="tip">점 아닌 글자 순서는 수면·약·영양제 · 날짜를 누르면 기록</p>
+      <p class="tip">왼쪽부터 수면·약·영양제 · 날짜를 누르면 기록</p>
     </section>
 
     <section class="card summary" id="summary"></section>
@@ -970,7 +970,7 @@ function renderCalendar(){
 
   var low = state.settings.sleepLow, high = state.settings.sleepHigh;
   var tISO = todayISO();
-  var BAR = 8, GAP = 3, NUMH = 24;
+  var BAR = 8, GAP = 3, NUMH = 36;
   var html = '';
 
   for (var w = 0; w < weeks; w++) {
@@ -1001,7 +1001,6 @@ function renderCalendar(){
 
       html += '<div class="' + cls + '" data-date="' + iso + '" role="button" tabindex="0" aria-label="' + fmtDate(iso, true) + '">';
       html += '<div class="dwrap"><span class="dnum">' + d.getUTCDate() + '</span></div>';
-      if (laneBlock) html += '<div style="height:' + (laneBlock + GAP) + 'px"></div>';
 
       var marks = '';
       if (rec) {
@@ -1010,6 +1009,7 @@ function renderCalendar(){
         if (typeof rec.supp === 'boolean') marks += '<i' + (rec.supp ? '' : ' class="bad"') + '>영</i>';
       }
       html += '<div class="mks">' + marks + '</div>';
+      if (laneBlock) html += '<div style="height:' + (laneBlock + GAP + 5) + 'px"></div>';
       html += '</div>';
     }
 
