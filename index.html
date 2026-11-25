@@ -78,10 +78,10 @@ h1,h2,h3,p{margin:0}
 .today-btn:active{background:#27272a}
 
 /* ---------- 경고 배너 ---------- */
-.banner{border-radius:15px;margin:0 4px 11px;padding:11px 12px;font-size:12px;line-height:1.55}
-.banner.alert{background:#fff1f2;border:1px solid #fda4af;border-left:4px solid #dc2626;color:#7f1d1d}
-.banner.ok{background:#faf9f6;border:1px solid #e8e6e1;border-left:4px solid #a1a1aa;color:#27272a}
-.banner.neutral{background:#faf9f6;border:1px solid #e8e6e1;border-left:4px solid #cbc7bf;color:#3f3f46}
+.banner{border-radius:12px;margin:0 4px 11px;padding:11px 12px 11px 13px;font-size:12px;line-height:1.55}
+.banner.alert{background:#fdf3f3;border:1px solid #f7dede;border-left:3px solid #dc2626;color:#7f1d1d}
+.banner.ok{background:#faf9f6;border:1px solid #eeece6;border-left:3px solid #d8d4cc;color:#27272a}
+.banner.neutral{background:#faf9f6;border:1px solid #eeece6;border-left:3px solid #d8d4cc;color:#3f3f46}
 .banner-title{font-size:12.5px;font-weight:800;margin-bottom:2px}
 .banner ul{margin:4px 0 0;padding-left:16px}
 .banner li{margin:1px 0}
@@ -97,72 +97,81 @@ h1,h2,h3,p{margin:0}
 .sw.period{background:#dc2626}
 .sw.ovulation{background:#52525b}
 .sw.pms{background:#18181b}
-.sw.planned{background:#ffe9ea;box-shadow:inset 0 0 0 1px #dc2626}
+.sw.planned{background:#ffe9ea;box-shadow:inset 0 0 0 1px #f0aab0}
 
 /* ---------- 요일 / 그리드 ---------- */
 .weekhead{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;font-size:10.5px;font-weight:700;color:#71717a;padding:2px 0 5px}
 .weekhead span:first-child{color:#dc2626}
 .weekhead span:last-child{color:#52525b}
-.grid{display:grid;grid-template-columns:repeat(7,1fr)}
+.grid{display:block}
+.week{position:relative;display:grid;grid-template-columns:repeat(7,1fr)}
 .cell{
   position:relative;display:flex;flex-direction:column;align-items:center;
-  min-height:64px;padding:4px 0 5px;border-radius:12px;
+  min-height:44px;padding:4px 0 5px;border-radius:9px;
 }
-.cell.sel{background:#f7f5f1;box-shadow:inset 0 0 0 1.5px #cbc7bf}
+/* 스트레스는 오브젝트 없이 셀 바탕 면으로만 */
+.cell.st1{background:#f2f0ea}
+.cell.st2{background:#fdeeee}
+.cell.sel{box-shadow:inset 0 0 0 1.5px #a1a1aa}
+.dwrap{position:relative;display:flex;align-items:center;justify-content:center;height:19px}
 .dnum{
-  width:22px;height:18px;line-height:18px;text-align:center;
-  font-size:12px;font-weight:700;color:#18181b;margin-bottom:2px;
+  min-width:21px;height:19px;line-height:19px;text-align:center;
+  font-size:12.5px;font-weight:700;color:#18181b;
 }
-.cell.out .dnum{color:#d6d3cd;font-weight:600}
-.cell.today .dnum{background:#111111;color:#ffffff;border-radius:7px;box-shadow:0 0 0 2px #e8e6e1,0 2px 6px rgba(24,24,27,.18)}
-.lanes{width:100%;display:flex;flex-direction:column;gap:1px;margin-bottom:3px}
-.lane{height:9px;width:100%}
-.seg{
-  height:100%;width:100%;display:flex;align-items:center;justify-content:center;
-  overflow:hidden;white-space:nowrap;font-size:7.5px;font-weight:800;letter-spacing:-0.4px;color:#fff;
+.cell.out .dnum{color:#d9d6d0;font-weight:600}
+.cell.today .dnum{background:#111111;color:#ffffff;border-radius:6px;box-shadow:0 0 0 2px #e8e6e1,0 2px 6px rgba(24,24,27,.18)}
+/* 기록 표식: 글자만. 완료는 옅은 회색, 못 챙긴 것만 붉게 */
+.mks{display:flex;align-items:center;justify-content:center;gap:2.5px;height:8px;margin-top:2px;font-size:6.5px;font-weight:700;letter-spacing:-0.2px}
+.mks i{font-style:normal;color:#c9c6c0}
+.mks i.bad{color:#dc2626;font-weight:800}
+.cell.out .mks i{color:#e2dfda}
+.cell.out .mks i.bad{color:#f0b3b8}
+/* 주기 바: 여러 칸에 걸쳐도 칸 경계에서 끊기지 않는 한 줄 캡슐 */
+.barlayer{position:absolute;left:0;right:0;pointer-events:none}
+.bar{
+  position:absolute;height:8px;border-radius:4px;overflow:hidden;
+  display:flex;align-items:center;padding:0 4px;
 }
-.seg span{text-shadow:0 1px 1px rgba(17,17,17,.25)}
-.badges{display:flex;gap:2px;margin-top:auto}
-.bd{
-  width:12px;height:12px;border-radius:4px;font-style:normal;
-  font-size:7px;font-weight:800;line-height:1;
-  display:flex;align-items:center;justify-content:center;color:#fff;
+.bar em{font-style:normal;font-size:6.5px;font-weight:800;line-height:1;letter-spacing:-0.2px;white-space:nowrap}
+.bar.period{background:#dc2626}
+.bar.ovulation{background:#52525b}
+.bar.pms{background:#18181b}
+.bar.period em,.bar.ovulation em,.bar.pms em{color:#ffffff}
+.bar.planned{
+  background-color:#ffe9ea;color:#b91c1c;
+  background-image:
+    repeating-linear-gradient(90deg,currentColor 0 3px,transparent 3px 7px),
+    repeating-linear-gradient(90deg,currentColor 0 3px,transparent 3px 7px);
+  background-size:100% 1.5px,100% 1.5px;
+  background-position:0 0,0 100%;
+  background-repeat:no-repeat;
 }
-.bd.none{background:transparent;box-shadow:inset 0 0 0 1px #e8e6e1;color:#d6d3cd}
-/* 완료(보통·충분·복용·챙김)는 색 없이 무채색 하나로 */
-.bd-sleep.mid,.bd-sleep.high,.bd-med.yes,.bd-supp.yes{background:#f4f4f5;color:#18181b;box-shadow:inset 0 0 0 1px #e4e4e7}
-/* 안 된 것만 붉은색 */
-.bd-sleep.low,.bd-med.no,.bd-supp.no{background:#dc2626;color:#ffffff}
-/* 스트레스 정도 표식 */
-.stress-mark{position:absolute;top:5px;right:0;font-style:normal;font-weight:900;line-height:1;letter-spacing:-1.2px}
-.stress-mark.lv1{font-size:9px;color:#18181b}
-.stress-mark.lv2{font-size:7.5px;color:#ffffff;background:#dc2626;border-radius:4px;padding:2px 2px 1px;letter-spacing:-0.5px}
+.bar.planned em{color:#b91c1c}
 
 .legend2{
-  display:flex;flex-wrap:wrap;align-items:center;gap:5px 8px;
-  padding:9px 6px 2px;margin-top:6px;border-top:1px solid #eeece6;
-  font-size:9.5px;color:#71717a;font-weight:600;
+  display:flex;flex-wrap:wrap;align-items:center;gap:4px 9px;
+  padding:8px 6px 1px;margin-top:6px;border-top:1px solid #eeece6;
+  font-size:9px;color:#71717a;font-weight:600;
 }
-.legend2 .lg{display:inline-flex;align-items:center;gap:3px}
-.legend2 .bd{width:11px;height:11px;font-size:6.5px;border-radius:3px}
-.legend2 .smi{font-style:normal;font-weight:900;font-size:8.5px;line-height:1;letter-spacing:-1.2px}
-.legend2 .smi.lv1{color:#18181b}
-.legend2 .smi.lv2{color:#dc2626}
+.legend2 .lg{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}
+.legend2 b{font-weight:800;letter-spacing:-0.2px}
+.legend2 b.lok{color:#c9c6c0}
+.legend2 b.lbad{color:#dc2626}
+.lgface{display:inline-block;width:12px;height:8px;border-radius:2.5px}
+.lgface.st1{background:#f2f0ea;box-shadow:inset 0 0 0 1px #e4e0d7}
+.lgface.st2{background:#fdeeee;box-shadow:inset 0 0 0 1px #f3cccc}
 .tip{padding:2px 8px 0;font-size:10px;color:#a1a1aa;text-align:center}
 
 /* ---------- 요약 ---------- */
 .summary{padding:17px 16px 15px}
-.kicker{display:inline-block;font-size:10px;font-weight:800;color:#3f3f46;background:#f4f4f5;padding:3px 9px;border-radius:20px;letter-spacing:0}
-.summary h2{font-size:19px;font-weight:800;letter-spacing:-0.7px;margin:9px 0 11px;color:#18181b}
-.pillrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.pill{font-size:11px;font-weight:800;padding:5px 10px;border-radius:20px;background:#f4f4f5;color:#3f3f46}
-.pill.p1{background:#fdeaea;color:#b91c1c}
-.pill.p2{background:#f4f4f5;color:#3f3f46}
-.pill.p3{background:#f4f4f5;color:#18181b}
-.pill.p4{background:#f4f4f5;color:#27272a}
-.pill.p5{background:#fdeaea;color:#b91c1c}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
-.stat{background:#faf9f6;border:1px solid #e8e6e1;border-radius:12px;padding:9px 3px;text-align:center}
+.kicker{display:inline-block;font-size:9px;font-weight:800;color:#b4b0a9;letter-spacing:1.2px}
+.summary h2{font-size:20px;font-weight:800;letter-spacing:-0.9px;margin:6px 0 9px;color:#18181b}
+.metaline{display:flex;flex-wrap:wrap;align-items:center;gap:4px 7px;font-size:11.5px;font-weight:700;color:#3f3f46;line-height:1.5;padding-bottom:12px;margin-bottom:12px;border-bottom:1px solid #eeece6}
+.metaline .vsep{width:1px;height:9px;background:#dcd9d3;display:inline-block}
+.metaline b{color:#b91c1c;font-weight:800}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid #e8e6e1;border-radius:11px;overflow:hidden;margin-bottom:14px}
+.stat{padding:10px 2px;text-align:center;border-left:1px solid #eeece6}
+.stat:first-child{border-left:0}
 .stat b{display:block;font-size:14px;font-weight:800;color:#18181b;letter-spacing:-0.5px}
 .stat span{display:block;margin-top:2px;font-size:9px;color:#71717a;font-weight:600;letter-spacing:-0.4px}
 .sumline{font-size:12.8px;line-height:1.7;color:#3f3f46;margin-bottom:9px}
@@ -312,8 +321,7 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
 }
 .lock.show{display:flex}
 .lock-inner{width:100%;max-width:330px;text-align:center}
-.lock-emoji{font-size:26px}
-.lock h2{font-size:20px;font-weight:800;letter-spacing:-0.8px;margin-top:8px;color:#18181b}
+.lock h2{font-size:20px;font-weight:800;letter-spacing:-0.8px;margin-top:14px;color:#18181b}
 .lock-msg{font-size:12px;color:#52525b;font-weight:600;margin-top:7px;min-height:17px}
 .dots{display:flex;gap:15px;justify-content:center;margin:22px 0 0}
 .dots i{width:14px;height:14px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #d6d3cd;display:block;transition:all .15s}
@@ -330,10 +338,9 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
 .keypad button.del{font-size:16px;color:#3f3f46}
 .lock-forgot{display:inline-block;margin-top:18px;padding:10px 12px;font-size:11px;font-weight:700;color:#a1a1aa;text-decoration:underline;text-underline-offset:3px;background:none;border:0}
 @media (max-width:359px){
-  .cell{min-height:58px;padding:3px 0 4px}
-  .bd{width:10px;height:10px;font-size:6px;border-radius:3px}
-  .badges{gap:1px}
-  .dnum{font-size:11px;height:16px;line-height:16px}
+  .cell{min-height:41px;padding:3px 0 4px}
+  .dnum{font-size:11.5px;height:17px;line-height:17px}
+  .dwrap{height:17px}
   .stat span{font-size:8px}
   .summary h2{font-size:18px}
   .legend2{font-size:9px}
@@ -349,7 +356,7 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
         <p class="hello">오늘도 천천히</p>
         <h1>내 컨디션 캘린더</h1>
       </div>
-      <button class="icon-btn" id="btnSettings" aria-label="설정">⚙️</button>
+      <button class="icon-btn" id="btnSettings" aria-label="설정"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.3M12 18.9v2.3M4.6 4.6l1.7 1.7M17.7 17.7l1.7 1.7M2.8 12h2.3M18.9 12h2.3M4.6 19.4l1.7-1.7M17.7 6.3l1.7-1.7"/></svg></button>
     </div>
     <div class="todayline" id="todayLine">오늘</div>
   </header>
@@ -378,13 +385,11 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
       <div class="grid" id="grid"></div>
 
       <div class="legend2">
-        <span class="lg"><i class="bd bd-sleep mid">수</i><i class="bd bd-med yes">약</i><i class="bd bd-supp yes">영</i>완료</span>
-        <span class="lg"><i class="bd bd-sleep low">수</i><i class="bd bd-med no">약</i><i class="bd bd-supp no">영</i>수면 부족 · 미복용</span>
-        <span class="lg"><i class="bd none">·</i>미기록</span>
-        <span class="lg"><i class="smi lv1">⚡</i>스트레스 조금</span>
-        <span class="lg"><i class="smi lv2">⚡⚡</i>심함</span>
+        <span class="lg"><b class="lok">수약영</b>완료</span>
+        <span class="lg"><b class="lbad">수약영</b>못 챙김</span>
+        <span class="lg"><i class="lgface st1"></i><i class="lgface st2"></i>스트레스</span>
       </div>
-      <p class="tip">날짜를 누르면 그날 기록을 남길 수 있어</p>
+      <p class="tip">점 아닌 글자 순서는 수면·약·영양제 · 날짜를 누르면 기록</p>
     </section>
 
     <section class="card summary" id="summary"></section>
@@ -504,7 +509,6 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
 
 <div class="lock" id="lockScreen">
   <div class="lock-inner">
-    <div class="lock-emoji">🔒</div>
     <h2>내 컨디션 캘린더</h2>
     <p class="lock-msg" id="lockMsg">비밀번호 4자리를 입력해줘</p>
     <div class="dots" id="pinDots"><i></i><i></i><i></i><i></i></div>
@@ -926,12 +930,11 @@ function renderCalendar(){
   var weeks = Math.ceil((lead + dim) / 7);
   var endN = startN + weeks * 7 - 1;
 
-  var map = {}, activeTypes = {};
+  var map = {};
   state.ranges.forEach(function(r){
     var s = d2n(r.start), e = d2n(r.end);
     var a = Math.max(s, startN), b = Math.min(e, endN);
     if (a > b) return;
-    activeTypes[r.type] = true;
     for (var n = a; n <= b; n++) {
       var iso = n2d(n);
       if (!map[iso]) map[iso] = {};
@@ -939,63 +942,83 @@ function renderCalendar(){
     }
   });
 
-  var lanes = TYPES.filter(function(t){ return activeTypes[t]; });
   var low = state.settings.sleepLow, high = state.settings.sleepHigh;
   var tISO = todayISO();
+  var BAR = 8, GAP = 3, NUMH = 24;
   var html = '';
 
-  for (var n = startN; n <= endN; n++) {
-    var iso = n2d(n);
-    var d = new Date(n * MS);
-    var cls = 'cell';
-    if (iso === tISO) cls += ' today';
-    if (iso === selected) cls += ' sel';
-    if (d.getUTCMonth() + 1 !== m) cls += ' out';
+  for (var w = 0; w < weeks; w++) {
+    var wStart = startN + w * 7, wEnd = wStart + 6;
 
-    html += '<div class="' + cls + '" data-date="' + iso + '" role="button" tabindex="0" aria-label="' + fmtDate(iso, true) + '">';
-    html += '<div class="dnum">' + d.getUTCDate() + '</div>';
-    html += '<div class="lanes">';
-
-    for (var li = 0; li < lanes.length; li++) {
-      var type = lanes[li];
-      var info = map[iso] ? map[iso][type] : null;
-      var inner = '';
-      if (info) {
-        var meta = TYPE_META[type];
-        var planned = !!info.r.planned;
-        var style = 'background:' + (planned ? meta.soft : meta.color) + ';';
-        if (planned) style += 'outline:1px dashed ' + meta.color + ';outline-offset:-1px;';
-        if (info.start) style += 'border-top-left-radius:5px;border-bottom-left-radius:5px;';
-        if (info.end) style += 'border-top-right-radius:5px;border-bottom-right-radius:5px;';
-        var label = '';
-        if (info.start) {
-          var labelColor = planned ? meta.text : '#ffffff';
-          label = '<span style="color:' + labelColor + '">' + meta.label + (planned ? '예정' : '') + '</span>';
-        }
-        inner = '<div class="seg" style="' + style + '">' + label + '</div>';
+    /* 이번 주에 실제로 걸친 주기 종류만 lane으로 쓴다 (빈 줄 없애기) */
+    var lanes = TYPES.filter(function(t){
+      for (var n = wStart; n <= wEnd; n++) {
+        var cm = map[n2d(n)];
+        if (cm && cm[t]) return true;
       }
-      html += '<div class="lane">' + inner + '</div>';
+      return false;
+    });
+    var laneBlock = lanes.length ? (lanes.length * BAR + (lanes.length - 1) * GAP) : 0;
+
+    html += '<div class="week">';
+
+    for (var i = 0; i < 7; i++) {
+      var n = wStart + i, iso = n2d(n), d = new Date(n * MS);
+      var cls = 'cell';
+      if (iso === tISO) cls += ' today';
+      if (iso === selected) cls += ' sel';
+      if (d.getUTCMonth() + 1 !== m) cls += ' out';
+
+      var rec = state.days[iso];
+      var stLv = (rec && typeof rec.stress === 'number' && rec.stress >= 1) ? (rec.stress >= 2 ? 2 : 1) : 0;
+      if (stLv) cls += ' st' + stLv;
+
+      html += '<div class="' + cls + '" data-date="' + iso + '" role="button" tabindex="0" aria-label="' + fmtDate(iso, true) + '">';
+      html += '<div class="dwrap"><span class="dnum">' + d.getUTCDate() + '</span></div>';
+      if (laneBlock) html += '<div style="height:' + (laneBlock + GAP) + 'px"></div>';
+
+      var marks = '';
+      if (rec) {
+        if (typeof rec.sleep === 'number') marks += '<i' + (rec.sleep <= low ? ' class="bad"' : '') + '>수</i>';
+        if (typeof rec.med === 'boolean') marks += '<i' + (rec.med ? '' : ' class="bad"') + '>약</i>';
+        if (typeof rec.supp === 'boolean') marks += '<i' + (rec.supp ? '' : ' class="bad"') + '>영</i>';
+      }
+      html += '<div class="mks">' + marks + '</div>';
+      html += '</div>';
     }
 
-    html += '</div>';
-
-    var rec = state.days[iso];
-    var sCls = 'none', mCls = 'none', pCls = 'none';
-    if (rec) {
-      if (typeof rec.sleep === 'number') sCls = rec.sleep <= low ? 'low' : (rec.sleep >= high ? 'high' : 'mid');
-      if (typeof rec.med === 'boolean') mCls = rec.med ? 'yes' : 'no';
-      if (typeof rec.supp === 'boolean') pCls = rec.supp ? 'yes' : 'no';
+    if (lanes.length) {
+      html += '<div class="barlayer" style="top:' + NUMH + 'px">';
+      for (var li = 0; li < lanes.length; li++) {
+        var type = lanes[li], meta = TYPE_META[type], top = li * (BAR + GAP);
+        var j = 0;
+        while (j < 7) {
+          var cm0 = map[n2d(wStart + j)];
+          if (!cm0 || !cm0[type]) { j++; continue; }
+          var s0 = j;
+          while (j < 7) {
+            var cm1 = map[n2d(wStart + j)];
+            if (!cm1 || !cm1[type]) break;
+            j++;
+          }
+          var e0 = j - 1;
+          var aInfo = map[n2d(wStart + s0)][type];
+          var bInfo = map[n2d(wStart + e0)][type];
+          var planned = !!aInfo.r.planned;
+          var L = s0 * 100 / 7, W = (e0 - s0 + 1) * 100 / 7;
+          var leftPad = aInfo.start ? 2 : 0, rightPad = bInfo.end ? 2 : 0;
+          var style = 'top:' + top + 'px;';
+          style += 'left:calc(' + L + '% + ' + leftPad + 'px);';
+          style += 'width:calc(' + W + '% - ' + (leftPad + rightPad) + 'px);';
+          var radius = '';
+          if (!aInfo.start) radius += 'border-top-left-radius:0;border-bottom-left-radius:0;';
+          if (!bInfo.end) radius += 'border-top-right-radius:0;border-bottom-right-radius:0;';
+          var label = aInfo.start ? '<em>' + meta.label + (planned ? '예정' : '') + '</em>' : '';
+          html += '<div class="bar ' + type + (planned ? ' planned' : '') + '" style="' + style + radius + '">' + label + '</div>';
+        }
+      }
+      html += '</div>';
     }
-    if (rec && typeof rec.stress === 'number' && rec.stress >= 1) {
-      var stLv = (rec.stress >= 2) ? 2 : 1;
-      html += '<span class="stress-mark lv' + stLv + '" role="img" aria-label="스트레스 ' +
-              (stLv === 2 ? '심함' : '조금') + '">' + (stLv === 2 ? '⚡⚡' : '⚡') + '</span>';
-    }
-    html += '<div class="badges">';
-    html += '<i class="bd bd-sleep ' + sCls + '" title="수면">수</i>';
-    html += '<i class="bd bd-med ' + mCls + '" title="약">약</i>';
-    html += '<i class="bd bd-supp ' + pCls + '" title="영양제">영</i>';
-    html += '</div>';
 
     html += '</div>';
   }
@@ -1017,17 +1040,17 @@ function renderBanner(){
     var title = '', sub = '', listHtml = '';
     if (items.length === 1) {
       if (s.count >= 3) {
-        title = '⚠️ 수면 부족이 ' + s.count + '일 연속이야';
+        title = '수면 부족이 ' + s.count + '일 연속이야';
         sub = low + '시간 이하로 자는 날이 이어지고 있어. 오늘은 11시 전에 눕는 걸 목표로 하자.';
       } else if (m.count >= 3) {
-        title = '⚠️ 약을 ' + m.count + '일째 안 먹었어';
+        title = '약을 ' + m.count + '일째 안 먹었어';
         sub = '오늘은 꼭 챙기자.';
       } else {
-        title = '⚠️ 영양제를 ' + p.count + '일째 안 챙겼어';
+        title = '영양제를 ' + p.count + '일째 안 챙겼어';
         sub = '오늘 한 알이면 다시 리듬이 붙어.';
       }
     } else {
-      title = '⚠️ ' + items.length + '가지가 3일 넘게 이어지고 있어';
+      title = items.length + '가지가 3일 넘게 이어지고 있어';
       listHtml = '<ul>' + items.join('') + '</ul>';
       if (s.count >= 3) sub = '오늘은 11시 전에 눕는 걸 목표로 하자. 잠이 제일 급해.';
     }
@@ -1036,12 +1059,12 @@ function renderBanner(){
   } else {
     var hasRecent = state.days[todayISO()] || state.days[n2d(d2n(todayISO()) - 1)];
     if (!hasRecent) {
-      html = '<div class="banner neutral">🌱 오늘 기록이 아직 비어 있어. 한 줄만 남기면 여기서 바로 알려줄게.</div>';
+      html = '<div class="banner neutral">오늘 기록이 아직 비어 있어. 한 줄만 남기면 여기서 바로 알려줄게.</div>';
     } else if (s.count === 2 || m.count === 2 || p.count === 2) {
       var what = s.count === 2 ? '수면이 2일째 부족해' : (m.count === 2 ? '약을 2일째 안 먹었어' : '영양제를 2일째 안 챙겼어');
-      html = '<div class="banner neutral">🌤 ' + what + '. 오늘 채우면 연속 경고는 안 떠.</div>';
+      html = '<div class="banner neutral">' + what + '. 오늘 채우면 연속 경고는 안 떠.</div>';
     } else {
-      html = '<div class="banner ok">🌿 최근 3일, 연속으로 무너진 건 없어. 지금 페이스 좋아.</div>';
+      html = '<div class="banner ok">최근 3일, 연속으로 무너진 건 없어. 지금 페이스 좋아.</div>';
     }
   }
   $('warnBanner').innerHTML = html;
@@ -1065,18 +1088,23 @@ function renderSummary(){
   var t = todayISO(), ci = cycleInfo(t), st = windowStats(7);
   var low = state.settings.sleepLow;
 
-  var pills = '';
-  if (ci.cycleDay) pills += '<span class="pill p1">주기 ' + ci.cycleDay + '일차</span>';
-  if (ci.phaseLabel) pills += '<span class="pill p2">' + esc(ci.phaseLabel) + '</span>';
+  var meta = [];
+  if (ci.cycleDay) meta.push('주기 ' + ci.cycleDay + '일차');
+  if (ci.phaseLabel) meta.push(esc(ci.phaseLabel));
   if (ci.dday !== null && typeof ci.dday === 'number') {
-    if (ci.dday > 0) pills += '<span class="pill p3">다음 생리 D-' + ci.dday + '</span>';
-    else if (ci.dday === 0) pills += '<span class="pill p3">다음 생리 오늘 예정</span>';
-    else pills += '<span class="pill p3">예정일이 ' + (-ci.dday) + '일 지났어</span>';
+    if (ci.dday > 0) meta.push('다음 생리 D-' + ci.dday);
+    else if (ci.dday === 0) meta.push('<b>다음 생리 오늘 예정</b>');
+    else meta.push('<b>예정일이 ' + (-ci.dday) + '일 지났어</b>');
   }
   if (st.stressDays > 0) {
-    pills += '<span class="pill ' + (st.stressHigh > 0 ? 'p5' : 'p4') + '">⚡ 스트레스 ' + st.stressDays + '일</span>';
+    meta.push(st.stressHigh > 0 ? '<b>스트레스 ' + st.stressDays + '일</b>' : '스트레스 ' + st.stressDays + '일');
   }
-  if (!pills) pills = '<span class="pill">아직 주기 기록이 없어</span>';
+  if (!meta.length) meta.push('아직 주기 기록이 없어');
+  var metaHtml = '';
+  for (var mi = 0; mi < meta.length; mi++) {
+    if (mi) metaHtml += '<i class="vsep"></i>';
+    metaHtml += '<span>' + meta[mi] + '</span>';
+  }
 
   var statHtml = ''
     + '<div class="stat"><b>' + (st.avg === null ? '—' : st.avg + 'h') + '</b><span>7일 수면 평균</span></div>'
@@ -1145,7 +1173,7 @@ function renderSummary(){
   else lines.push('지금 페이스 괜찮아. 이대로만 가자.');
 
   var html = '<span class="kicker">너 이렇다</span><h2>지금 너는</h2>'
-    + '<div class="pillrow">' + pills + '</div>'
+    + '<div class="metaline">' + metaHtml + '</div>'
     + '<div class="stats">' + statHtml + '</div>';
   lines.forEach(function(line){ html += '<p class="sumline">' + line + '</p>'; });
   html += '<p class="sumfoot">기록은 이 기기에만 저장돼 · 서버로 안 감</p>';
@@ -1363,7 +1391,7 @@ function verifyPin(v){
 function showSeedHint(){
   if (!firstRunSeeded) return;
   firstRunSeeded = false;
-  setTimeout(function(){ toast('오른쪽 위 ⚙️에서 PIN을 설정하고, 날짜를 탭해 기록을 시작하세요', 6000); }, 700);
+  setTimeout(function(){ toast('오른쪽 위 설정에서 PIN을 설정하고, 날짜를 탭해 기록을 시작하세요', 6000); }, 700);
 }
 
 function renderSettings(){
