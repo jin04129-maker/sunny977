@@ -1026,14 +1026,14 @@ function renderCalendar(){
       if (stLv) html += '<i class="face st' + stLv + '" aria-hidden="true"></i>';
       html += '<div class="dwrap"><span class="dnum">' + d.getUTCDate() + '</span></div>';
 
-      if (laneBlock) html += '<div style="height:' + (laneBlock + 16) + 'px"></div>';
+      if (laneBlock) html += '<div style="height:' + (laneBlock + 18) + 'px"></div>';
       html += '</div>';
     }
 
     if (lanes.length) {
       html += '<div class="barlayer" style="bottom:10px">';
       for (var li = 0; li < lanes.length; li++) {
-        var type = lanes[li], meta = TYPE_META[type], top = li * (BAR + GAP);
+        var type = lanes[li], meta = TYPE_META[type], bot = (lanes.length - 1 - li) * (BAR + GAP);
         var j = 0;
         while (j < 7) {
           var cm0 = map[n2d(wStart + j)];
@@ -1050,7 +1050,7 @@ function renderCalendar(){
           var planned = !!aInfo.r.planned;
           var L = s0 * 100 / 7, W = (e0 - s0 + 1) * 100 / 7;
           var leftPad = aInfo.start ? 2 : 0, rightPad = bInfo.end ? 2 : 0;
-          var style = 'top:' + top + 'px;';
+          var style = 'bottom:' + bot + 'px;';
           style += 'left:calc(' + L + '% + ' + leftPad + 'px);';
           style += 'width:calc(' + W + '% - ' + (leftPad + rightPad) + 'px);';
           var radius = '';
