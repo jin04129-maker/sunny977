@@ -111,8 +111,12 @@ h1,h2,h3,p{margin:0}
 .banner.ok .sub,.banner.neutral .sub{color:#71717a}
 
 /* ---------- 범례 ---------- */
-.legend{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:0 5px 10px;font-size:10px;color:#71717a;font-weight:700}
+.legend{display:flex;flex-direction:column;gap:6px;padding:0 5px 10px;font-size:10.5px;color:#71717a;font-weight:700}
+.legend .lgrow{display:flex;flex-wrap:wrap;align-items:center;gap:3px 9px}
 .legend .lg{display:inline-flex;align-items:center;gap:4px}
+.legend .lg.stress{color:#52525b;margin-left:-2px}
+.legend .lg.stress b{font-weight:800;color:#18181b}
+.legend .lgface{width:16px;height:10px;border-radius:2.5px}
 .sw{width:15px;height:6px;border-radius:3px;display:inline-block}
 .sw.period{background:linear-gradient(90deg,#ff7aa2 0%,#ff5e84 100%)}
 .sw.ovulation{background:#52525b}
@@ -176,6 +180,13 @@ h1,h2,h3,p{margin:0}
 .lgface.st1{background:linear-gradient(150deg,#ffdc94 0%,#fff6e2 100%);box-shadow:inset 0 0 0 1px #f6e2b8}
 .lgface.st2{background:linear-gradient(150deg,#ffb3c8 0%,#ffe1e8 100%);box-shadow:inset 0 0 0 1px #f7b6c8}
 
+/* ---------- 지금 너는 · 한두 줄 요약 ---------- */
+.brief{margin:-6px 0 18px;padding-left:12px;border-left:2px solid rgba(255,94,132,.45)}
+.brief p{margin:0;font-size:13.5px;line-height:1.5;letter-spacing:-.35px;letter-spacing:-.3px}
+.brief .b1{font-weight:800;color:#18181b}
+.brief .b2{margin-top:3px;font-weight:600;color:#a15267;font-size:12.5px}
+@media (max-width:359px){.brief p{font-size:12.5px}.brief .b2{font-size:11.5px}}
+
 /* ---------- 요약 ---------- */
 .summary{
   padding:22px 18px 16px;overflow:hidden;
@@ -210,15 +221,14 @@ h1,h2,h3,p{margin:0}
 .chart .sbar i{display:block;width:100%;max-width:12px;border-radius:3px 3px 1px 1px;background:#18181b}
 .chart .sbar i.short{background:#ff5e84}
 .chart .sbar i.none{background:rgba(24,24,27,.10)}
-.gauge{margin-bottom:11px}
-.gauge:last-child{margin-bottom:0}
-.gauge-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
-.gname{font-size:11px;font-weight:800;color:#3f3f46;letter-spacing:-0.2px}
-.gst{font-size:10.5px;font-weight:800;color:#9a9aa2;letter-spacing:-0.2px}
+.ggrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.gcell{padding:9px 9px 10px;border-radius:12px;background:#fafafb;border:1px solid rgba(24,24,27,.05);overflow:hidden}
+.gname{display:block;font-size:10.5px;font-weight:800;color:#8a8a92;letter-spacing:-0.2px}
+.gst{display:block;margin-top:3px;font-size:11.5px;font-weight:800;color:#a1a1aa;letter-spacing:-0.3px;white-space:nowrap}
 .gst.mid{color:#18181b}
 .gst.hot{color:#e11d48}
-.gtrack{position:relative;height:7px;border-radius:4px;background:#ececef}
-.gfill{position:absolute;left:0;top:0;height:7px;border-radius:4px;background:#18181b}
+.gtrack{display:block;margin-top:7px;height:5px;border-radius:3px;background:#ececef;overflow:hidden}
+.gfill{display:block;height:5px;border-radius:3px;background:#18181b}
 .gfill.hot{background:linear-gradient(90deg,#ff7aa2 0%,#ff5e84 100%)}
 .gok{margin:2px 0 0;font-size:11px;font-weight:800;color:#52525b;letter-spacing:-0.2px}
 .strip{display:flex;gap:5px;margin:0 0 5px}
@@ -424,10 +434,15 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
       <div id="warnBanner"></div>
 
       <div class="legend">
-        <span class="lg"><i class="sw period"></i>생리</span>
-        <span class="lg"><i class="sw ovulation"></i>배란</span>
-        <span class="lg"><i class="sw pms"></i>PMS</span>
-        <span class="lg"><i class="sw planned"></i>예정</span>
+        <div class="lgrow">
+          <span class="lg"><i class="sw period"></i>생리</span>
+          <span class="lg"><i class="sw ovulation"></i>배란</span>
+          <span class="lg"><i class="sw pms"></i>PMS</span>
+          <span class="lg"><i class="sw planned"></i>예정</span>
+        </div>
+        <div class="lgrow">
+          <span class="lg stress"><b>스트레스</b> <i class="lgface st1"></i>조금 <i class="lgface st2"></i>심함</span>
+        </div>
       </div>
 
       <div class="weekhead">
@@ -436,7 +451,6 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
       <div class="grid" id="grid"></div>
 
       <div class="legend2">
-        <span class="lg">스트레스 <i class="lgface st1"></i>조금 <i class="lgface st2"></i>심함</span>
         <span class="lg">날짜를 누르면 기록</span>
       </div>
     </section>
@@ -1181,15 +1195,13 @@ function sleepChart(low){
   return '<div class="chart"><span class="sbars">' + bars + '</span><i class="base" style="bottom:' + base + 'px"></i></div>';
 }
 
-function gaugeRow(name, cnt, missTxt, okTxt){
+function gaugeTile(name, cnt, missTxt, okTxt){
   var pct = Math.max(0, Math.min(100, Math.round(cnt.count / 7 * 100)));
   var lv = cnt.count >= 3 ? 'hot' : (cnt.count >= 1 ? 'mid' : '');
-  var st = cnt.count >= 1 ? cnt.count + '일째 ' + missTxt : okTxt;
-  var s = '<div class="gauge"><div class="gauge-top"><span class="gname">' + name + '</span>'
-        + '<span class="gst ' + lv + '">' + st + '</span></div><div class="gtrack">';
-  if (pct > 0) s += '<i class="gfill ' + lv + '" style="width:' + pct + '%"></i>';
-  s += '</div></div>';
-  return s;
+  var st = cnt.count >= 1 ? cnt.count + '일 ' + missTxt : okTxt;
+  return '<div class="gcell"><span class="gname">' + name + '</span>'
+    + '<span class="gst ' + lv + '">' + st + '</span>'
+    + '<span class="gtrack">' + (pct > 0 ? '<i class="gfill ' + lv + '" style="width:' + pct + '%"></i>' : '') + '</span></div>';
 }
 
 function stressStrip(){
@@ -1203,6 +1215,23 @@ function stressStrip(){
   return '<div class="strip">' + blocks + '</div><div class="strip-days">' + days + '</div>';
 }
 
+/* 한두 줄 요약: 지금 제일 중요한 것만 */
+function todayBrief(ci, st){
+  var head;
+  if (ci.phase === 'period') head = '생리 ' + (ci.periodDay || 1) + '일차 · 피로·통증 주의';
+  else if (ci.phase === 'pms') head = 'PMS ' + (ci.pmsDay || 1) + '일차 · 예민주의';
+  else if (ci.phase === 'ovulation') head = '배란기 · 비교적 안정';
+  else head = '일반기 · 컨디션 무난';
+
+  var sleepDown = (st.avg !== null && st.avg < 6) || st.short > 0;
+  var line;
+  if (sleepDown) line = '수면 떨어지고 있어서 더 예민해질 수 있으니 오늘은 일찍 잘 자기.';
+  else if (st.stressHigh > 0) line = '스트레스가 쌓여서 더 예민해질 수 있으니 무리하지 말기.';
+  else line = '수면 리듬 괜찮아서 이 페이스만 유지하기.';
+
+  return '<div class="brief"><p class="b1">' + head + '</p><p class="b2">' + line + '</p></div>';
+}
+
 function renderSummary(){
   var t = todayISO(), ci = cycleInfo(t), st = windowStats(7);
   var low = state.settings.sleepLow;
@@ -1210,7 +1239,7 @@ function renderSummary(){
   var ddayTxt = (ci.dday === null || typeof ci.dday !== 'number') ? '-'
     : (ci.dday > 0 ? 'D-' + ci.dday : (ci.dday === 0 ? 'D-DAY' : 'D+' + (-ci.dday)));
 
-  var html = '<span class="kicker">너 이렇다</span><h2>지금 너는</h2>';
+  var html = '<span class="kicker">너 이렇다</span><h2>지금 너는</h2>' + todayBrief(ci, st);
 
   /* 1. 주기 타임라인 */
   html += '<div class="sum-sec first">'
@@ -1231,9 +1260,11 @@ function renderSummary(){
   if (sS.count + sM.count + sP.count === 0) {
     html += '<p class="gok">빠진 것 없이 잘 챙기고 있어</p>';
   } else {
-    html += gaugeRow('수면', sS, '부족', '없음')
-      + gaugeRow('약', sM, '안 챙김', '잘 챙기는 중')
-      + gaugeRow('영양제', sP, '안 챙김', '잘 챙기는 중');
+    html += '<div class="ggrid">'
+      + gaugeTile('수면', sS, '부족', '없음')
+      + gaugeTile('약', sM, '빠짐', '잘 챙김')
+      + gaugeTile('영양제', sP, '빠짐', '잘 챙김')
+      + '</div>';
   }
   html += '</div>';
 
