@@ -127,12 +127,12 @@ h1,h2,h3,p{margin:0}
 .week{position:relative;display:grid;grid-template-columns:repeat(7,1fr)}
 .cell{
   position:relative;display:flex;flex-direction:column;align-items:center;
-  min-height:62px;padding:6px 0 8px;border-radius:11px;
+  min-height:66px;padding:6px 0 10px;border-radius:11px;
 }
 /* 스트레스는 오브젝트 없이 셀 바탕 면으로만 (날짜 칸을 덮는 타일) */
 .face{position:absolute;left:2.5px;right:2.5px;top:2px;bottom:2px;border-radius:10px;z-index:0}
-.face.st1{background:linear-gradient(168deg,#fff7e3 0%,#ffedc9 100%)}
-.face.st2{background:linear-gradient(168deg,#ffd7e1 0%,#ffc2d3 62%,#ffd0dd 100%)}
+.face.st1{background:linear-gradient(150deg,#ffe6ae 0%,#fff6e2 62%,#fffdf7 100%)}
+.face.st2{background:linear-gradient(150deg,#ffc2d3 0%,#ffe1e8 60%,#fff4f6 100%)}
 .cell.sel{outline:1.5px solid #a1a1aa;outline-offset:-1.5px}
 .dwrap{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:26px}
 .dnum{
@@ -144,16 +144,16 @@ h1,h2,h3,p{margin:0}
 /* 주기 바: 여러 칸에 걸쳐도 칸 경계에서 끊기지 않는 한 줄 캡슐 */
 .barlayer{position:absolute;left:0;right:0;pointer-events:none}
 .bar{
-  position:absolute;height:10px;border-radius:5px;overflow:hidden;
+  position:absolute;height:11px;border-radius:5.5px;overflow:hidden;
   display:flex;align-items:center;padding:0 5px;
 }
-.bar em{font-style:normal;font-size:7.5px;font-weight:800;line-height:1;letter-spacing:-0.1px;white-space:nowrap}
+.bar em{font-style:normal;font-size:8px;font-weight:800;line-height:1;letter-spacing:-0.1px;white-space:nowrap}
 .bar.period{background:linear-gradient(90deg,#ff7aa2 0%,#ff5e84 100%)}
 .bar.ovulation{background:#52525b}
 .bar.pms{background:#18181b}
 .bar.period em,.bar.ovulation em,.bar.pms em{color:#ffffff}
 .bar.planned{
-  background-color:#fff1f5;color:#ff5e84;
+  background-color:#fff5f8;color:#ff5e84;
   background-image:
     repeating-linear-gradient(90deg,currentColor 0 3px,transparent 3px 7px),
     repeating-linear-gradient(90deg,currentColor 0 3px,transparent 3px 7px);
@@ -161,7 +161,7 @@ h1,h2,h3,p{margin:0}
   background-position:0 0,0 100%;
   background-repeat:no-repeat;
 }
-.bar.planned em{color:#e11d48;background:#fff1f5;border-radius:3px;padding:0 3px;position:relative;z-index:1}
+.bar.planned em{color:#e11d48;background:#ffffff;border-radius:3px;padding:1px 4px;position:relative;z-index:1;box-shadow:0 0 0 1px #ffd0db}
 
 .legend2{
   display:flex;flex-wrap:wrap;align-items:center;gap:4px 13px;
@@ -173,8 +173,8 @@ h1,h2,h3,p{margin:0}
 .legend2 b.lok{color:#c6c6cd}
 .legend2 b.lbad{color:#ff5e84}
 .lgface{display:inline-block;width:13px;height:9px;border-radius:2.5px;vertical-align:-1px}
-.lgface.st1{background:linear-gradient(168deg,#fff7e3 0%,#ffedc9 100%);box-shadow:inset 0 0 0 1px #f6e2b8}
-.lgface.st2{background:linear-gradient(168deg,#ffd7e1 0%,#ffc2d3 100%);box-shadow:inset 0 0 0 1px #f7b6c8}
+.lgface.st1{background:linear-gradient(150deg,#ffdc94 0%,#fff6e2 100%);box-shadow:inset 0 0 0 1px #f6e2b8}
+.lgface.st2{background:linear-gradient(150deg,#ffb3c8 0%,#ffe1e8 100%);box-shadow:inset 0 0 0 1px #f7b6c8}
 
 /* ---------- 요약 ---------- */
 .summary{
@@ -214,13 +214,13 @@ h1,h2,h3,p{margin:0}
 .gauge:last-child{margin-bottom:0}
 .gauge-top{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px}
 .gname{font-size:11px;font-weight:800;color:#3f3f46;letter-spacing:-0.2px}
-.gst{font-size:10.5px;font-weight:800;color:#b6b6bd;letter-spacing:-0.2px}
+.gst{font-size:10.5px;font-weight:800;color:#9a9aa2;letter-spacing:-0.2px}
 .gst.mid{color:#18181b}
 .gst.hot{color:#e11d48}
-.gtrack{position:relative;height:6px;border-radius:3px;background:#ececef}
-.gfill{position:absolute;left:0;top:0;height:6px;border-radius:3px;background:#18181b}
+.gtrack{position:relative;height:7px;border-radius:4px;background:#ececef}
+.gfill{position:absolute;left:0;top:0;height:7px;border-radius:4px;background:#18181b}
 .gfill.hot{background:linear-gradient(90deg,#ff7aa2 0%,#ff5e84 100%)}
-.gtick{position:absolute;top:-3px;width:1px;height:12px;background:#cfcfd6}
+.gtick{position:absolute;top:-4px;width:1px;height:15px;background:#9a9aa2;opacity:.55}
 .gok{margin:2px 0 0;font-size:11px;font-weight:800;color:#52525b;letter-spacing:-0.2px}
 .strip{display:flex;gap:5px;margin:0 0 5px}
 .strip i{flex:1;height:13px;border-radius:3px;background:#ececef}
@@ -391,7 +391,7 @@ input[type="range"]::-moz-range-thumb{width:22px;height:22px;border:3px solid #1
 .keypad button.del{font-size:16px;color:#3f3f46}
 .lock-forgot{display:inline-block;margin-top:18px;padding:10px 12px;font-size:11px;font-weight:700;color:#a1a1aa;text-decoration:underline;text-underline-offset:3px;background:none;border:0}
 @media (max-width:359px){
-  .cell{min-height:56px;padding:5px 0 6px}
+  .cell{min-height:60px;padding:5px 0 8px}
   .dnum{font-size:15px;height:22px;line-height:22px}
   .dwrap{height:24px}
   .summary h2{font-size:21px}
@@ -993,7 +993,7 @@ function renderCalendar(){
   });
 
   var tISO = todayISO();
-  var BAR = 10, GAP = 4;
+  var BAR = 11, GAP = 4;
   var html = '';
 
   for (var w = 0; w < weeks; w++) {
@@ -1026,12 +1026,12 @@ function renderCalendar(){
       if (stLv) html += '<i class="face st' + stLv + '" aria-hidden="true"></i>';
       html += '<div class="dwrap"><span class="dnum">' + d.getUTCDate() + '</span></div>';
 
-      if (laneBlock) html += '<div style="height:' + (laneBlock + 10) + 'px"></div>';
+      if (laneBlock) html += '<div style="height:' + (laneBlock + 16) + 'px"></div>';
       html += '</div>';
     }
 
     if (lanes.length) {
-      html += '<div class="barlayer" style="bottom:12px">';
+      html += '<div class="barlayer" style="bottom:10px">';
       for (var li = 0; li < lanes.length; li++) {
         var type = lanes[li], meta = TYPE_META[type], top = li * (BAR + GAP);
         var j = 0;
