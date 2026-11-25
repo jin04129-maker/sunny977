@@ -16,9 +16,18 @@ html,body{margin:0;padding:0;background:#d9d9dc}
 (function(){
   try { localStorage.clear(); } catch(e){}
   var q = new URLSearchParams(location.search);
-  var s = q.get('s') || '';
-  var url = './index.html?d=' + (q.get('d') || 'v4') + (s ? '#sync=' + s : '');
-  document.getElementById('f').src = url;
+  var d = q.get('d') || 'v4';
+  var f = document.getElementById('f');
+  var s = q.get('s');
+  function go(payload){
+    var url = './index.html?d=' + d + (payload ? '#sync=' + payload.trim() : '');
+    f.src = url;
+  }
+  if (s) { go(s); return; }
+  fetch('./seed-sync.txt', { cache: 'no-store' })
+    .then(function(r){ return r.text(); })
+    .then(go)
+    .catch(function(){ go(''); });
 })();
 </script>
 </body>
