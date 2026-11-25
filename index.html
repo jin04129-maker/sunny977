@@ -220,7 +220,6 @@ h1,h2,h3,p{margin:0}
 .gtrack{position:relative;height:7px;border-radius:4px;background:#ececef}
 .gfill{position:absolute;left:0;top:0;height:7px;border-radius:4px;background:#18181b}
 .gfill.hot{background:linear-gradient(90deg,#ff7aa2 0%,#ff5e84 100%)}
-.gtick{position:absolute;top:-4px;width:1px;height:15px;background:#6b6b75;opacity:.45}
 .gok{margin:2px 0 0;font-size:11px;font-weight:800;color:#52525b;letter-spacing:-0.2px}
 .strip{display:flex;gap:5px;margin:0 0 5px}
 .strip i{flex:1;height:13px;border-radius:3px;background:#ececef}
@@ -1189,7 +1188,7 @@ function gaugeRow(name, cnt, missTxt, okTxt){
   var s = '<div class="gauge"><div class="gauge-top"><span class="gname">' + name + '</span>'
         + '<span class="gst ' + lv + '">' + st + '</span></div><div class="gtrack">';
   if (pct > 0) s += '<i class="gfill ' + lv + '" style="width:' + pct + '%"></i>';
-  s += '<i class="gtick" style="left:42.9%"></i></div></div>';
+  s += '</div></div>';
   return s;
 }
 
@@ -1228,7 +1227,7 @@ function renderSummary(){
   /* 3. 연속 누락 게이지 */
   var sS = sleepStreak(), sM = medStreak(), sP = suppStreak();
   html += '<div class="sum-sec"><div class="sum-head"><span class="sum-k">연속 누락</span>'
-    + '<span class="sum-v">3일부터 경고</span></div>';
+    + '<span class="sum-v">최근 7일</span></div>';
   if (sS.count + sM.count + sP.count === 0) {
     html += '<p class="gok">빠진 것 없이 잘 챙기고 있어</p>';
   } else {
